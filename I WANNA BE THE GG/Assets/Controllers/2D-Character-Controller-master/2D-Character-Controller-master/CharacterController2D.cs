@@ -135,7 +135,8 @@ public class CharacterController2D : MonoBehaviour
         //Debug.Log("DOUBLEJUMP: " + doubleJump);
         if (doubleJump && jumpCount < 3) // if a player is double jumping...
         {
-            m_Rigidbody2D.velocity.Set(0f, 0f);
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+            //m_Rigidbody2D.velocity.Set(0f, 0f);
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
     }
