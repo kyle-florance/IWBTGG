@@ -61,7 +61,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump, bool doubleJump)
+	public void Move(float move, bool crouch, bool jump, bool doubleJump, int jumpCount)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -130,9 +130,11 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
-		} else if (doubleJump) // if a player is double jumping...
+		}
+        //Debug.Log("JUMPCOUNT:" + jumpCount);
+        //Debug.Log("DOUBLEJUMP: " + doubleJump);
+        if (doubleJump && jumpCount < 3) // if a player is double jumping...
         {
-            doubleJump = false;
             m_Rigidbody2D.velocity.Set(0f, 0f);
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }

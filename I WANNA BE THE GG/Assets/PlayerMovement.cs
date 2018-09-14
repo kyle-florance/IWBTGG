@@ -10,18 +10,23 @@ public class PlayerMovement : MonoBehaviour {
     bool jump = false;
     bool crouch = false;
     bool doubleJump = false;
+    int jumpCount = 0;
 
     // Update is called once per frame
     void Update() {
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
         h = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if (Input.GetButtonDown("Jump") && !jump)
+        if (Input.GetButtonDown("Jump") && jumpCount < 1)
         {
             jump = true;
-        } else if (Input.GetButtonDown("Jump") && jump && !doubleJump)
+            jumpCount++;
+            //Debug.Log("SINGLE JUMP:" + jumpCount);
+        } else if (Input.GetButtonDown("Jump") && !controller.isGrounded() && jumpCount < 2)
         {
             doubleJump = true;
+            jumpCount++;
+            //Debug.Log("DOUBLE JUMP:" + jumpCount);
         }
 
         if (Input.GetButtonDown("Crouch"))
@@ -34,12 +39,19 @@ public class PlayerMovement : MonoBehaviour {
     }
     
     void FixedUpdate()
-    { 
-        controller.Move(h * Time.fixedDeltaTime, crouch, jump, doubleJump);
+    {
+        //Debug.Log("JUMPCOUNT BEFORE MOVE:" + jumpCount);
+        //Debug.Log("DOUBLEJUMP: " + doubleJump);
+        //Debug.Log("JUMP: " + jump);
+        controller.Move(h * Time.fixedDeltaTime, crouch, jump, doubleJump, jumpCount);
 
         jump = false;
         doubleJump = false;
-        
+        if (controller.isGrounded())
+        {
+            //Debug.Log("RESETING JUMP COUNT:" + jumpCount);
+            jumpCount = 0;
+        }
         
     }
 }
