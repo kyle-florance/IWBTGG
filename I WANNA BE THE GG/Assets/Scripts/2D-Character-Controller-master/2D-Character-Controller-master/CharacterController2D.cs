@@ -19,6 +19,9 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+    public GameObject leftBullet, rightBullet;
+    Transform gunBarrel;
+
 	[Header("Events")]
 	[Space]
 
@@ -33,6 +36,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        gunBarrel = transform.Find("gunBarrel");
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -61,7 +65,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump, bool doubleJump, int jumpCount)
+    public void Move(float move, bool crouch, bool jump, bool doubleJump, int jumpCount, bool shoot)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -139,6 +143,10 @@ public class CharacterController2D : MonoBehaviour
             //m_Rigidbody2D.velocity.Set(0f, 0f);
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
+        if (shoot)
+        {
+            Fire();
+        }
     }
 
 
@@ -155,5 +163,15 @@ public class CharacterController2D : MonoBehaviour
     public bool isGrounded()
     {
         return m_Grounded;
+    }
+    private void Fire()
+    {
+        if (m_FacingRight)
+        {
+            Instantiate(rightBullet, gunBarrel.position, Quaternion.identity);
+        } else if (!m_FacingRight)
+        {
+            Instantiate(leftBullet, gunBarrel.position, Quaternion.identity);
+        }
     }
 }

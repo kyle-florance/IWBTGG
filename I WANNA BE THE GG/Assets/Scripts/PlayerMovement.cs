@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     bool crouch = false;
     bool doubleJump = false;
     int jumpCount = 0;
+    bool shoot = false;
 
     // Update is called once per frame
     void Update() {
@@ -22,7 +23,8 @@ public class PlayerMovement : MonoBehaviour {
             jump = true;
             jumpCount++;
             //Debug.Log("SINGLE JUMP:" + jumpCount);
-        } else if (Input.GetButtonDown("Jump") && !controller.isGrounded() && jumpCount < 2)
+        }
+        if (Input.GetButtonDown("Jump") && !controller.isGrounded() && jumpCount < 2)
         {
             doubleJump = true;
             jumpCount++;
@@ -36,6 +38,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             crouch = false;
         }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            shoot = true;
+        }
     }
     
     void FixedUpdate()
@@ -43,8 +49,8 @@ public class PlayerMovement : MonoBehaviour {
         //Debug.Log("JUMPCOUNT BEFORE MOVE:" + jumpCount);
         //Debug.Log("DOUBLEJUMP: " + doubleJump);
         //Debug.Log("JUMP: " + jump);
-        controller.Move(h * Time.fixedDeltaTime, crouch, jump, doubleJump, jumpCount);
-
+        controller.Move(h * Time.fixedDeltaTime, crouch, jump, doubleJump, jumpCount, shoot);
+        shoot = false;
         jump = false;
         doubleJump = false;
         if (controller.isGrounded())
