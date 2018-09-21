@@ -17,4 +17,12 @@ public class bulletController : MonoBehaviour {
 	void Update () {
         m_Rigidbody2D.velocity = speed;
     }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            //Debug.Log("COLLISION");
+            Destroy(gameObject);
+        }
+    }
 }
