@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour {
     int jumpCount = 0;
     bool shoot = false;
 
+
+
     // Update is called once per frame
     void Update() {
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
@@ -42,10 +44,13 @@ public class PlayerMovement : MonoBehaviour {
         {
             shoot = true;
         }
+
+
     }
     
     void FixedUpdate()
     {
+
         //Debug.Log("JUMPCOUNT BEFORE MOVE:" + jumpCount);
         //Debug.Log("DOUBLEJUMP: " + doubleJump);
         //Debug.Log("JUMP: " + jump);
