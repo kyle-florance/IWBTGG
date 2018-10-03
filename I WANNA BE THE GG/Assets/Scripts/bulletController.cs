@@ -21,7 +21,6 @@ public class bulletController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Ground")
         {
-            //Debug.Log("COLLISION");
             Destroy(gameObject);
         }
     }

@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
             jumpCount++;
             //Debug.Log("DOUBLE JUMP:" + jumpCount);
         }
-
+        /**
         if (Input.GetButtonDown("Crouch"))
         {
             crouch = true;
@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             crouch = false;
         }
+        **/
         if (Input.GetButtonDown("Fire1") && GameObject.FindGameObjectsWithTag("Bullet").Length < 5)
         {
             shoot = true;

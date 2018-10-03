@@ -21,6 +21,11 @@ public class GameMaster : MonoBehaviour {
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
+    public static void respawnPlayer(Player player)
+    {
+        Destroy(player.gameObject);
+        gm.RespawnPlayer();
+    }
     public static void killPlayer(Player player)
     {
         Destroy(player.gameObject);

@@ -18,14 +18,20 @@ public class Player : MonoBehaviour
             this.respawn();
         }
     }
-
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            this.die();
+        }
+    }
     public void die()
     {
         GameMaster.killPlayer(this);
     }
     public void respawn()
     {
-        GameMaster.killPlayer(this);
+        GameMaster.respawnPlayer(this);
     }
 
 
