@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             crouch = false;
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && GameObject.FindGameObjectsWithTag("Bullet").Length < 5)
         {
             shoot = true;
         }
