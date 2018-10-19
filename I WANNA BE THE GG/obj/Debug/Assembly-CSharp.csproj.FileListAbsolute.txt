@@ -164,3 +164,6 @@ C:\Users\Kyle\Desktop\I WANNA BE THE GG\Temp\bin\Debug\UnityEngine.SpatialTracki
 C:\Users\Kyle\Desktop\I WANNA BE THE GG\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Kyle\Desktop\I WANNA BE THE GG\obj\Debug\Assembly-CSharp.dll
 C:\Users\Kyle\Desktop\I WANNA BE THE GG\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Kyle\Documents\GitHub\IWBTGG\I WANNA BE THE GG\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Kyle\Documents\GitHub\IWBTGG\I WANNA BE THE GG\obj\Debug\Assembly-CSharp.dll
+C:\Users\Kyle\Documents\GitHub\IWBTGG\I WANNA BE THE GG\obj\Debug\Assembly-CSharp.pdb
