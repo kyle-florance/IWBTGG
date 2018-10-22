@@ -37,42 +37,38 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        //Debug.Log("1st holding jump?: " + holdingJump);
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+
         if (isGrounded)
         {
             jumpCount = 0;
-            //Debug.Log("resetting jumpcount: " + jumpCount);
             doubleJump = false;
         }
-        moveInput = Input.GetAxisRaw("Horizontal");
+
+        moveInput = Input.GetAxisRaw("Horizontal");                      // moves character
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-        //Debug.Log("2nd holding jump?: " + holdingJump);
-        if (jump)                                          // if the jump key was pressed
+
+        if (jump)                                                        // if the jump key was pressed
         {
             Jump();                                                      // call jump fuction
             jump = false;                                                // no longer jumping
         }
-        //     this part is for the variable jump height
-        if (Input.GetButton("Jump"))                                                 // if holding jump
+                    // this part is for the variable jump height
+        if (Input.GetButton("Jump"))                                     // if holding jump
         {
+            
             if (isJumping)                                               // and if jumping
             {
                 if (jumpTimeCounter > 0)                                 // increase jumpheight
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                     jumpTimeCounter -= Time.deltaTime;
+                    Debug.Log("Jump time counter: " + jumpTimeCounter);
                 }
                 else
                 {
                     isJumping = false;
-                    
                 }
-            }
-            if (!holdingJump)
-            {
-                isJumping = false;
-                
             }
         }
     }
@@ -103,15 +99,11 @@ public class PlayerController : MonoBehaviour {
         if(jumpCount == 0)                                           // if haven't jumped
         {
             isJumping = true;                                        // currently jumping
-                                          // set jumptimer for the held jump
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);     // do physics
-        } else if (jumpCount == 1)                      // if have jumped once
+        } else if (jumpCount == 1)                                   // if have jumped once
         {
-            Debug.Log("DOUBLE JUMPING");
-            
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        //Debug.Log("jumpcount: " + jumpCount);
     }
 }
