@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public bool isDead;
 
     public class PlayerStats
     {
@@ -20,9 +21,10 @@ public class Player : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && !isDead)
         {
             this.die();
+            isDead = true;
         }
     }
     public void die()
