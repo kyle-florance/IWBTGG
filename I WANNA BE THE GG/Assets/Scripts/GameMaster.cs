@@ -7,14 +7,17 @@ public class GameMaster : MonoBehaviour {
     public static GameMaster gm;
     public Transform playerPrefab;
     public Transform spawnPoint;
+    public GameObject blood;
+    public AudioClip[] slams;
+    //private AudioClip shootClip;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         if (gm == null)
         {
             gm = this;
         }
-	}
+    }
 
     public void RespawnPlayer()
     {
@@ -29,6 +32,16 @@ public class GameMaster : MonoBehaviour {
     public static void killPlayer(Player player)
     {
         Destroy(player.gameObject);
+        gm.StartCoroutine("WaitForKeyPress");   
+    }
+    private IEnumerator WaitForKeyPress()
+    {
+        Random.Range(0, slams.Length);
+
+        while (!Input.GetButtonDown("Respawn"))
+        {
+            yield return null;
+        }
         gm.RespawnPlayer();
     }
 }

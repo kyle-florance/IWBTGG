@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public bool isDead;
+    public GameObject blood;
+
 
     public class PlayerStats
     {
@@ -29,12 +31,13 @@ public class Player : MonoBehaviour
     }
     public void die()
     {
+        Instantiate(blood, transform.position, Quaternion.identity);
+
         GameMaster.killPlayer(this);
     }
     public void respawn()
     {
         GameMaster.respawnPlayer(this);
     }
-
 
 }
