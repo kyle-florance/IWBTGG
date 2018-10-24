@@ -7,12 +7,16 @@ public class Player : MonoBehaviour
     public bool isDead;
     public GameObject blood;
 
-
     public class PlayerStats
     {
         public int Damage = 1;
     }
     public PlayerStats playerStats = new PlayerStats();
+
+    void Awake()
+    {
+        
+    }
 
     void Update()
     {
@@ -31,6 +35,8 @@ public class Player : MonoBehaviour
     }
     public void die()
     {
+        
+
         Instantiate(blood, transform.position, Quaternion.identity);
 
         GameMaster.killPlayer(this);
