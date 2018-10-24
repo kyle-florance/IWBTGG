@@ -15,20 +15,21 @@ public class PlayerController : MonoBehaviour {
     public float checkRadius;
     public LayerMask whatIsGround;
     Transform gunBarrel;
+    bool facingRight;
 
     private float jumpTimeCounter;
     public float jumpTime;
     bool isRaising;
-    bool facingRight;
     bool jump;
     bool holdingJump;
-    bool doubleJump;
 
     bool shoot;
     public GameObject leftBullet, rightBullet;
 
     int jumpCount = 0;
-    
+
+    public AudioSource sounds;
+    public AudioClip[] audioClipArray;
 
     // Use this for initialization
     void Awake()
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         gunBarrel = transform.Find("gunBarrel");
         facingRight = true;
+        sounds = gameObject.GetComponent<AudioSource>();
 
     }
 
@@ -124,12 +126,23 @@ public class PlayerController : MonoBehaviour {
         {
             jumpTimeCounter = jumpTime;
             isRaising = true;                                        // currently jumping
+            if (jumpCount == 0)
+            {
+                sounds.clip = audioClipArray[1];
+                sounds.PlayOneShot(sounds.clip);
+            } else if (jumpCount == 1)
+            {
+                sounds.clip = audioClipArray[2];
+                sounds.PlayOneShot(sounds.clip);
+            }
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);     // do physics
             jumpCount++;
         }
     }
     void Fire()
     {
+        sounds.clip = audioClipArray[0];
+        sounds.PlayOneShot(sounds.clip);
         if (facingRight)
         {
             Instantiate(rightBullet, gunBarrel.position, Quaternion.identity);
