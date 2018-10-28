@@ -56,12 +56,13 @@
      <Compile Include="Assets\Scripts\bulletController.cs" />
      <Compile Include="Assets\Scripts\destroyOnDelay.cs" />
      <Compile Include="Assets\Scripts\GameMaster.cs" />
+     <Compile Include="Assets\Scripts\moveLightSource.cs" />
      <Compile Include="Assets\Scripts\moveSpawnPoint.cs" />
      <Compile Include="Assets\Scripts\outdated scripts\CharacterController2D.cs" />
      <Compile Include="Assets\Scripts\outdated scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
+     <None Include="Assets\Outsourced Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Kyle/Documents/GitHub/IWBTGG/I WANNA BE THE GG/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

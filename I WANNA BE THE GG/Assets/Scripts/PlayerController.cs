@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour {
 
     int jumpCount = 0;
 
+    public Animator animator;
+
     public AudioSource sounds;
     public AudioClip[] audioClipArray;
 
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour {
 
         moveInput = Input.GetAxisRaw("Horizontal");                      // moves character
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        animator.SetFloat("Speed", Mathf.Abs(moveInput));
 
         if (jump)                                                        // if the jump key was pressed
         {
