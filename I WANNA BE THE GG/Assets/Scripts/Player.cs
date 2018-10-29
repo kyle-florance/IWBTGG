@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
             this.respawn();
         }
     }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy" && !isDead)
@@ -33,17 +34,17 @@ public class Player : MonoBehaviour
             isDead = true;
         }
     }
+
     public void die()
     {
-        
-
         Instantiate(blood, transform.position, Quaternion.identity);
-
         GameMaster.killPlayer(this);
     }
+
     public void respawn()
     {
         GameMaster.respawnPlayer(this);
     }
+
 
 }

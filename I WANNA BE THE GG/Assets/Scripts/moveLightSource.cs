@@ -14,6 +14,9 @@ public class moveLightSource : MonoBehaviour {
         {
             transform.position = Vector3.MoveTowards(transform.position, targetMarker.position, speed * Time.deltaTime);
         }
-        
+        if (Input.anyKeyDown)
+        {
+            transform.position = targetMarker.position;
+        }
 	}
 }

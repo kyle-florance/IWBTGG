@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour {
         if (!isGrounded && Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround))
         {
             jumpCount = 0;
+            animator.SetBool("Jumping", false);
         }
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour {
 
         if (jump)                                                        // if the jump key was pressed
         {
+            animator.SetBool("Jumping", true);
             Jump();                                                      // call jump fuction
             jump = false;                                                // no longer jumping
         }
