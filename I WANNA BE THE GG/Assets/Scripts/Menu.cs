@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
@@ -14,6 +15,7 @@ public class Menu : MonoBehaviour {
     public void pressLoad()
     {
         GameMaster.gm.load();
+        SceneManager.LoadScene(GameMaster.gm.SceneName);
     }
 
     public void pressSave()

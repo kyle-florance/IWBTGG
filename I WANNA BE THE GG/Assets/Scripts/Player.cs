@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        
+        //DontDestroyOnLoad(this);
     }
 
     void Update()

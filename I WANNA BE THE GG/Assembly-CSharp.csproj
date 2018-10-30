@@ -55,7 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\bulletController.cs" />
      <Compile Include="Assets\Scripts\destroyOnDelay.cs" />
-     <Compile Include="Assets\Scripts\EnterNextLevel.cs" />
+     <Compile Include="Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\GameMaster.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\moveLightSource.cs" />

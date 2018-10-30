@@ -27,26 +27,33 @@ public class GameMaster : MonoBehaviour {
 
     public Canvas GameOver;
 
+    public Transform nextLocation;
+
+
     //private AudioClip shootClip;
 
     // Use this for initialization
 
-
-    void Start () {    
+   
+    void Start () {
+        Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         if (gm == null)
         {
             gm = this;
             DontDestroyOnLoad(gm);
+            slams = gameObject.GetComponent<AudioSource>();
+            mainCamera.enabled = true;
+            blackScreen.enabled = false;
+            GameOver.gameObject.SetActive(false);
+            SceneName = SceneManager.GetActiveScene().name;
+            
         }
         else
         {
+            
             DestroyImmediate(gameObject);
         }
-        slams = gameObject.GetComponent<AudioSource>();
-        mainCamera.enabled = true;
-        blackScreen.enabled = false;
-        GameOver.gameObject.SetActive(false);
-        SceneName = SceneManager.GetActiveScene().name;
+
     }
 
     public void RespawnPlayer()
@@ -55,9 +62,11 @@ public class GameMaster : MonoBehaviour {
         {
             load();
             SceneManager.LoadScene(SceneName);
-            DestroyImmediate(GameObject.FindGameObjectWithTag("Player"));
             Vector3 spawnPosition = new Vector3(spawnPositionX, spawnPositionY, spawnPositionZ);
-            
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                Destroy(GameObject.FindGameObjectWithTag("Player"));
+            }
             Instantiate(playerPrefab, spawnPosition, spawnPoint.rotation);
 
         } else
@@ -82,7 +91,7 @@ public class GameMaster : MonoBehaviour {
         Destroy(player.gameObject);        
         gm.StartCoroutine("WaitForKeyPress");   
     }
-
+    
     private IEnumerator WaitForKeyPress()
     {
         GameOver.gameObject.SetActive(true);
@@ -126,10 +135,10 @@ public class GameMaster : MonoBehaviour {
             deathCount = data.deathCount;
             respawnCount = data.respawnCount;
 
-            Debug.Log("file loaded " + Application.persistentDataPath);
+            //Debug.Log("file loaded " + Application.persistentDataPath);
         } else
         {
-            Debug.Log("file does not exist " + Application.persistentDataPath);
+            //Debug.Log("file does not exist " + Application.persistentDataPath);
         }
     }
     // save player data
@@ -149,7 +158,7 @@ public class GameMaster : MonoBehaviour {
         bf.Serialize(file, data);
         file.Close();
 
-        Debug.Log("file saved");
+        //Debug.Log("file saved");
     }
     
 }
