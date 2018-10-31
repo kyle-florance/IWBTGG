@@ -33,26 +33,25 @@ public class GameMaster : MonoBehaviour {
     public int doorID;
 
     // Start function
-    void Start () {
-       
-        
+    void Start () {       
         if (gm == null)
         {
             gm = this;
-            Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+            load();
+            GameObject.FindGameObjectWithTag("Respawn").transform.position = new Vector3(spawnPositionX, spawnPositionY, spawnPositionZ);
             DontDestroyOnLoad(gm);
             slams = gameObject.GetComponent<AudioSource>();
             mainCamera.enabled = true;
             blackScreen.enabled = false;
             GameOver.gameObject.SetActive(false);
             SceneName = SceneManager.GetActiveScene().name;
+
             
         }
         else
         {          
-            DestroyImmediate(gameObject);
+            DestroyImmediate(this.gameObject);
         }
-        
     }
 
     // places the character in the correct scene
@@ -61,14 +60,15 @@ public class GameMaster : MonoBehaviour {
         if (SceneManager.GetActiveScene().name != SceneName)
         {
             load();
-            Debug.Log("Spawn Point Position X:  " + spawnPositionX);
-            Debug.Log("Spawn Point Position X:  " + spawnPositionY);
-            Debug.Log("Spawn Point Position X:  " + spawnPositionZ);
+            //Debug.Log("After Load Spawn Point Position X:  " + spawnPositionX);
+            //Debug.Log("After Load Spawn Point Position Y:  " + spawnPositionY);
             SceneManager.LoadScene(SceneName);
-            spawnPoint.position = new Vector3(spawnPositionX, spawnPositionY, spawnPositionZ);
 
-            Debug.Log("Spawn Point Position:  " + spawnPoint.position);
+            GameObject.FindGameObjectWithTag("Respawn").transform.position = new Vector3(spawnPositionX, spawnPositionY, spawnPositionZ);
+
+            //Debug.Log("Spawn Point Position:  " + spawnPoint.position);
             Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject.FindGameObjectWithTag("Player").transform.position = GameObject.FindGameObjectWithTag("Respawn").transform.position;
 
         } else
         {
@@ -92,8 +92,8 @@ public class GameMaster : MonoBehaviour {
     public static void killPlayer(Player player)
     {
         gm.deathCount++;
-        Destroy(player.gameObject);        
-        gm.StartCoroutine("WaitForKeyPress");   
+        Destroy(player.gameObject);
+        gm.StartCoroutine("WaitForKeyPress");
     }
     
     private IEnumerator WaitForKeyPress()
@@ -138,6 +138,8 @@ public class GameMaster : MonoBehaviour {
             spawnPositionZ = data.spawnPositionZ;
             deathCount = data.deathCount;
             respawnCount = data.respawnCount;
+            //Debug.Log("loaded Spawn Point Position X:  " + spawnPositionX);
+            //Debug.Log("loaded Spawn Point Position Y:  " + spawnPositionY);
 
             //Debug.Log("file loaded " + Application.persistentDataPath);
         } else

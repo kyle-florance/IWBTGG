@@ -18,6 +18,8 @@ public class Door : MonoBehaviour {
     {
         exitLocation = this.transform.GetChild(0).gameObject.transform;
         GameMaster gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        //Debug.Log("Door Spawn Point Position X:  " + gm.spawnPositionX);
+        //Debug.Log("Door Spawn Point Position Y:  " + gm.spawnPositionY);
         if (gm.usingDoor)
         {
             if (GameMaster.gm.doorID == this.doorID)
