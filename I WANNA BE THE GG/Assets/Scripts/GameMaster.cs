@@ -34,10 +34,12 @@ public class GameMaster : MonoBehaviour {
 
     // Start function
     void Start () {
-        Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+       
+        
         if (gm == null)
         {
             gm = this;
+            Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
             DontDestroyOnLoad(gm);
             slams = gameObject.GetComponent<AudioSource>();
             mainCamera.enabled = true;
@@ -50,6 +52,7 @@ public class GameMaster : MonoBehaviour {
         {          
             DestroyImmediate(gameObject);
         }
+        
     }
 
     // places the character in the correct scene
