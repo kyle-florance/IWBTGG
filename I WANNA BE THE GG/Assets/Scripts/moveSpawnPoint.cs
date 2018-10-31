@@ -12,8 +12,6 @@ public class moveSpawnPoint : MonoBehaviour {
     {
         if (col.gameObject.tag == "Bullet")
         {
-
-            //Debug.Log("Collision between Save Point and Bullet");
             player = GameObject.FindWithTag("Player").transform;
 
             GameMaster gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();

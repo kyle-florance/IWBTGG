@@ -27,14 +27,12 @@ public class GameMaster : MonoBehaviour {
 
     public Canvas GameOver;
 
-    public Transform nextLocation;
+    //public Transform nextLocation;
+    //public Transform lastLocation;
+    public bool usingDoor;
+    public int doorID;
 
-
-    //private AudioClip shootClip;
-
-    // Use this for initialization
-
-   
+    // Start function
     void Start () {
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         if (gm == null)
@@ -49,25 +47,20 @@ public class GameMaster : MonoBehaviour {
             
         }
         else
-        {
-            
+        {          
             DestroyImmediate(gameObject);
         }
-
     }
 
+    // places the character in the correct scene
     public void RespawnPlayer()
     {
         if (SceneManager.GetActiveScene().name != SceneName)
         {
             load();
             SceneManager.LoadScene(SceneName);
-            Vector3 spawnPosition = new Vector3(spawnPositionX, spawnPositionY, spawnPositionZ);
-            if (GameObject.FindGameObjectWithTag("Player"))
-            {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-            }
-            Instantiate(playerPrefab, spawnPosition, spawnPoint.rotation);
+            spawnPoint.position = new Vector3(spawnPositionX, spawnPositionY, spawnPositionZ);
+            Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
         } else
         {
@@ -78,13 +71,16 @@ public class GameMaster : MonoBehaviour {
         blackScreen.enabled = false;
     }
 
-    public static void respawnPlayer(Player player)
+    // what happens when the player presses respawn
+    public static void respawn(Player player)
     {
         gm.respawnCount++;
         Destroy(player.gameObject);
         gm.StartCoroutine("RespawnDelay");
     }
 
+
+    // what happens when the player dies
     public static void killPlayer(Player player)
     {
         gm.deathCount++;

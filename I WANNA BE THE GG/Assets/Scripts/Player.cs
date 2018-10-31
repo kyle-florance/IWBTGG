@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public bool isDead;
     public GameObject blood;
 
+    public static Player player;
+
     public class PlayerStats
     {
         public int Damage = 1;
@@ -15,7 +17,15 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        //DontDestroyOnLoad(this);
+        if (player == null)
+        {
+            player = this;
+            DontDestroyOnLoad(player);
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
     }
 
     void Update()
@@ -43,7 +53,7 @@ public class Player : MonoBehaviour
 
     public void respawn()
     {
-        GameMaster.respawnPlayer(this);
+        GameMaster.respawn(this);
     }
 
 
