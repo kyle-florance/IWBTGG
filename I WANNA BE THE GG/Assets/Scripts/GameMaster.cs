@@ -61,8 +61,13 @@ public class GameMaster : MonoBehaviour {
         if (SceneManager.GetActiveScene().name != SceneName)
         {
             load();
+            Debug.Log("Spawn Point Position X:  " + spawnPositionX);
+            Debug.Log("Spawn Point Position X:  " + spawnPositionY);
+            Debug.Log("Spawn Point Position X:  " + spawnPositionZ);
             SceneManager.LoadScene(SceneName);
             spawnPoint.position = new Vector3(spawnPositionX, spawnPositionY, spawnPositionZ);
+
+            Debug.Log("Spawn Point Position:  " + spawnPoint.position);
             Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
         } else
