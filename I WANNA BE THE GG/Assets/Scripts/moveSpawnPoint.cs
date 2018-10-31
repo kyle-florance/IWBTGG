@@ -17,9 +17,9 @@ public class moveSpawnPoint : MonoBehaviour {
             GameMaster gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
 
             gm.SceneName = SceneManager.GetActiveScene().name;
-            gm.spawnPositionX = GameObject.FindGameObjectWithTag("Respawn").transform.position.x;
-            gm.spawnPositionY = GameObject.FindGameObjectWithTag("Respawn").transform.position.y;
-            gm.spawnPositionZ = GameObject.FindGameObjectWithTag("Respawn").transform.position.z;
+            gm.spawnPositionX = player.position.x;
+            gm.spawnPositionY = player.position.y;
+            gm.spawnPositionZ = player.position.z;
             //Debug.Log("Move and Save Spawn Point Position X:  " + gm.spawnPositionX);
             //Debug.Log("Move and Save Spawn Point Position Y:  " + gm.spawnPositionY);
             gm.spawnPoint.SetPositionAndRotation(player.position, player.rotation);

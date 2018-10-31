@@ -39,17 +39,16 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         gunBarrel = transform.Find("gunBarrel");
         moveInput = Input.GetAxisRaw("Horizontal");
-        if (moveInput > 0 && !facingRight)
+        if (moveInput > 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             facingRight = true;
         }
-        else if (moveInput < 0 && facingRight)
+        else if (moveInput < 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
             facingRight = false;
         }
-        moveInput = Input.GetAxisRaw("Horizontal");
         sounds = gameObject.GetComponent<AudioSource>();
 
     }
@@ -103,12 +102,12 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        if (moveInput > 0 && !facingRight)
+        if (moveInput > 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             facingRight = true;
         }
-        else if (moveInput < 0 && facingRight)
+        else if (moveInput < 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
             facingRight = false;
