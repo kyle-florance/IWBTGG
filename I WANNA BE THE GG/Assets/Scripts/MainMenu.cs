@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
 {
     public String FirstLevel;
     public Transform initialSpawn;
+    public GameObject OptionsMenu;
+    public LensFlare flare;
 
     public void LoadButton()
     {
@@ -58,5 +60,15 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(FirstLevel);
         GameObject.FindGameObjectWithTag("Respawn").transform.position = initialSpawn.transform.position;
         GameMaster.gm.RespawnPlayer();
+    }
+
+    public void Options()
+    {
+        flare.enabled = false;
+        OptionsMenu.SetActive(true);
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

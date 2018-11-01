@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameMaster : MonoBehaviour {
 
@@ -21,6 +22,9 @@ public class GameMaster : MonoBehaviour {
 
     public AudioSource slams;
     public AudioClip[] audioClipArray;
+    public AudioMixerGroup sfx;
+    public AudioMixerGroup music;
+    
 
     public Camera mainCamera;
     public Camera blackScreen;
@@ -31,6 +35,8 @@ public class GameMaster : MonoBehaviour {
     //public Transform lastLocation;
     public bool usingDoor;
     public int doorID;
+
+    
 
     // Start function
     void Start () {       
@@ -100,6 +106,7 @@ public class GameMaster : MonoBehaviour {
     {
         GameOver.gameObject.SetActive(true);
         slams.clip = audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)];
+        slams.outputAudioMixerGroup = sfx;
         slams.PlayOneShot(slams.clip);
         while (!Input.GetButtonDown("Respawn"))
         {

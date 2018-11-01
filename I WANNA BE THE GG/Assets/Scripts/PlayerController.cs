@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour {
 
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 
     public AudioSource sounds;
     public AudioClip[] audioClipArray;
+    public AudioMixerGroup sfx;
 
     // Use this for initialization
     void Awake()
@@ -144,10 +146,12 @@ public class PlayerController : MonoBehaviour {
             if (jumpCount == 0)
             {
                 sounds.clip = audioClipArray[1];
+                sounds.outputAudioMixerGroup = sfx;
                 sounds.PlayOneShot(sounds.clip);
             } else if (jumpCount == 1)
             {
                 sounds.clip = audioClipArray[2];
+                sounds.outputAudioMixerGroup = sfx;
                 sounds.PlayOneShot(sounds.clip);
             }
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);     // do physics
@@ -157,6 +161,7 @@ public class PlayerController : MonoBehaviour {
     void Fire()
     {
         sounds.clip = audioClipArray[0];
+        sounds.outputAudioMixerGroup = sfx;
         sounds.PlayOneShot(sounds.clip);
         if (facingRight)
         {
