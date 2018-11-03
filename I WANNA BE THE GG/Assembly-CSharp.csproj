@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Options.cs" />
      <Compile Include="Assets\Scripts\outdated scripts\CharacterController2D.cs" />
      <Compile Include="Assets\Scripts\outdated scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <None Include="Assets\Outsourced Assets\BayatGames\Free Platform Game Assets\Readme.txt" />

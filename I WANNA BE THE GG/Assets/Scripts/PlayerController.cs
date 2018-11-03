@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         gunBarrel = transform.Find("gunBarrel");
         moveInput = Input.GetAxisRaw("Horizontal");
+        facingRight = true;
         if (moveInput > 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
