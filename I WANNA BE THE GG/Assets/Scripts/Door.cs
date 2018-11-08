@@ -17,6 +17,7 @@ public class Door : MonoBehaviour {
     void Awake()
     {
         exitLocation = this.transform.GetChild(0).gameObject.transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         GameMaster gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         //Debug.Log("Door Spawn Point Position X:  " + gm.spawnPositionX);
         //Debug.Log("Door Spawn Point Position Y:  " + gm.spawnPositionY);
@@ -25,7 +26,7 @@ public class Door : MonoBehaviour {
             if (GameMaster.gm.doorID == this.doorID)
             {
                 player = GameObject.FindGameObjectWithTag("Player");
-                player.transform.position = this.exitLocation.position;
+                player.transform.position = exitLocation.position;
                 GameMaster.gm.usingDoor = false;
             }
             
@@ -42,4 +43,5 @@ public class Door : MonoBehaviour {
             SceneManager.LoadScene(nextScene);
         }
     }
+    
 }

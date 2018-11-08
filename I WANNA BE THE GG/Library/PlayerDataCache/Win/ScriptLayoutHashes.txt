@@ -3,8 +3,8 @@ PlayerPath?
 C:/Users/Kyle/Desktop/I WANNA BE THE GOD GAMER.exe
 SceneListBegin?
 Assets/Scenes/Main Menu.unity
-Assets/Scenes/TEST2.unity
 Assets/Scenes/TEST1.unity
+Assets/Scenes/TEST2.unity
 SceneListEnd?
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
