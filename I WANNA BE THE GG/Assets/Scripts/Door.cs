@@ -9,27 +9,24 @@ public class Door : MonoBehaviour {
     public string nextScene;
     public int doorID;
     private Transform exitLocation;
-    //public Player playerPrefab;
-    public GameObject player;
+    private GameObject player;
+    //public Transform playerPrefab;
 
-    private GameObject[] doors;
 
     void Awake()
     {
         exitLocation = this.transform.GetChild(0).gameObject.transform;
-        player = GameObject.FindGameObjectWithTag("Player");
         GameMaster gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        //Debug.Log("Door Spawn Point Position X:  " + gm.spawnPositionX);
-        //Debug.Log("Door Spawn Point Position Y:  " + gm.spawnPositionY);
         if (gm.usingDoor)
         {
             if (GameMaster.gm.doorID == this.doorID)
             {
                 player = GameObject.FindGameObjectWithTag("Player");
+                //Destroy(player);
                 player.transform.position = exitLocation.position;
+                //Instantiate(playerPrefab, exitLocation.position, exitLocation.rotation);
                 GameMaster.gm.usingDoor = false;
-            }
-            
+            }            
         }
     }
     

@@ -39,7 +39,7 @@ public class GameMaster : MonoBehaviour {
     
 
     // Start function
-    void Start () {       
+    void Start () {
         if (gm == null)
         {
             gm = this;
