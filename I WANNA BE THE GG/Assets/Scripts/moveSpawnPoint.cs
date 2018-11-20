@@ -6,12 +6,19 @@ using UnityEngine.SceneManagement;
 public class moveSpawnPoint : MonoBehaviour {
 
     Transform player;
-
+    public Transform moon;
+    bool rotating = false;
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Bullet")
         {
+            if(!rotating)
+            {
+                StartCoroutine("RotateMoon");
+            }
+            
+
             player = GameObject.FindWithTag("Player").transform;
 
             GameMaster gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -26,4 +33,19 @@ public class moveSpawnPoint : MonoBehaviour {
             gm.save();
         }
     }
+    private IEnumerator RotateMoon()
+    {
+        rotating = true;
+        float startRotation = moon.transform.eulerAngles.y;
+        float endRotation = startRotation + 360.0f;
+        float t = 0.0f;
+        while (t < 0.5f)
+        {
+            t += Time.deltaTime;
+            float zRotation = Mathf.Lerp(startRotation, endRotation, t / 0.5f) % 360.0f;
+            moon.transform.eulerAngles = new Vector3(moon.transform.eulerAngles.x, moon.transform.eulerAngles.y, zRotation);
+            yield return null;
+        }
+        rotating = false;
+    } 
 }

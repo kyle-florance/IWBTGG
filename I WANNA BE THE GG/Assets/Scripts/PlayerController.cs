@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour {
             animator.SetBool("Jumping", false);
         }
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
-
         
 
         moveInput = Input.GetAxisRaw("Horizontal");                      // moves character

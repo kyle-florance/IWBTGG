@@ -45,6 +45,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnParticleCollision(GameObject other)
+    {
+        if (other.gameObject.tag == "Enemy" && !isDead)
+        {
+            Debug.Log("death");
+            this.die();
+            isDead = true;
+        }
+    }
+
     public void die()
     {
         Instantiate(blood, transform.position, Quaternion.identity);
