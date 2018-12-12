@@ -36,8 +36,6 @@ public class GameMaster : MonoBehaviour {
     public bool usingDoor;
     public int doorID;
 
-    
-
     // Start function
     void Start () {
         if (gm == null)
@@ -73,11 +71,14 @@ public class GameMaster : MonoBehaviour {
             GameObject.FindGameObjectWithTag("Respawn").transform.position = new Vector3(spawnPositionX, spawnPositionY, spawnPositionZ);
 
             //Debug.Log("Spawn Point Position:  " + spawnPoint.position);
+            
             Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+
             GameObject.FindGameObjectWithTag("Player").transform.position = GameObject.FindGameObjectWithTag("Respawn").transform.position;
 
         } else
         {
+            SceneManager.LoadScene(SceneName);
             Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         }
         
@@ -88,6 +89,7 @@ public class GameMaster : MonoBehaviour {
     // what happens when the player presses respawn
     public static void respawn(Player player)
     {
+        
         gm.respawnCount++;
         Destroy(player.gameObject);
         gm.StartCoroutine("RespawnDelay");
@@ -122,7 +124,7 @@ public class GameMaster : MonoBehaviour {
 
     private IEnumerator RespawnDelay()
     {
-
+        
         blackScreen.enabled = true;
         mainCamera.enabled = false;
         yield return new WaitForSeconds(.05f);

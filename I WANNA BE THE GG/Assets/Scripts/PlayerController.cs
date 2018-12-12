@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     public float checkRadius;
     public LayerMask whatIsGround;
     Transform gunBarrel;
-    bool facingRight;
+    public bool facingRight;
 
     private float jumpTimeCounter;
     public float jumpTime;
@@ -40,16 +40,12 @@ public class PlayerController : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
         gunBarrel = transform.Find("gunBarrel");
-        moveInput = Input.GetAxisRaw("Horizontal");
-        facingRight = true;
-        if (moveInput > 0)
+        if (transform.eulerAngles.y == 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
             facingRight = true;
         }
-        else if (moveInput < 0)
+        else
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
             facingRight = false;
         }
         sounds = gameObject.GetComponent<AudioSource>();
@@ -104,17 +100,18 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+
         if (moveInput > 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             facingRight = true;
+            
         }
         else if (moveInput < 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
             facingRight = false;
         }
-
         if (Input.GetButtonDown("Jump"))                                // if jump key is pressed
         {
             jump = true;

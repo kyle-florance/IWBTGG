@@ -49,7 +49,8 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && !isDead)
         {
-            Debug.Log("death");
+            
+            //Debug.Log("death");
             this.die();
             isDead = true;
         }
@@ -57,12 +58,14 @@ public class Player : MonoBehaviour
 
     public void die()
     {
+        //player.GetComponent<PlayerController>().facingRight = false;
         Instantiate(blood, transform.position, Quaternion.identity);
         GameMaster.killPlayer(this);
     }
 
     public void respawn()
     {
+        
         GameMaster.respawn(this);
     }
 
